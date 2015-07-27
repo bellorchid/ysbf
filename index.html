@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<link href="css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+<!--环境-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+$(function () {
+	
+	imgZoomInit()//模块初始化
+})
+
+
+/*
+* 图片放大展示
+* 2015-01-04
+* nizilam
+*/
+function imgZoomInit(){
+	$('.piclist li.pic').append(function(){
+		ht = $(this).find('.in').html();
+		return "<div class='original'>"+ht+"</div>";
+	});
+	
+	$(".piclist li.pic .in img").each(function(i){
+		var img = $(this);
+		var realWidth ;//原始宽度
+		var realHeight ;//原始高度
+		var vs ;//图片宽高比
+		
+		realWidth = this.width;
+		realHeight = this.height;
+		vs = realWidth/realHeight;
+			
+		//缩略图比例230:142(约等于1.62)
+		if(vs>=1.62){//横图则固定高度
+			$(img).css("width","auto").css("height","180px").css("marginLeft",115-(71*realWidth/realHeight)+"px");
+		}
+		else{//竖图则固定宽度
+			$(img).css("width","180px").css("height","auto").css("marginTop",71-(115*realHeight/realWidth)+"px");
+		}
+		
+		//图片放大水平垂直居中显示
+		if(vs>=1){//横图或正方形
+			$(img).parent().parent().parent().find('.original img').height(200);
+			$(img).parent().parent().parent().find('.original img').width('auto');
+			$(img).parent().parent().parent().find('.original').css({
+				//此处需结合实际情况计算 左偏移：.original实际宽度的二分之一
+				marginLeft: function(){
+					return -(130*realWidth/realHeight)-6;
+				},
+				left:'50%'
+			})
+		}else{//竖图
+			$(img).parent().parent().parent().find('.original img').width(200);
+			$(img).parent().parent().parent().find('.original img').height('auto');
+			$(img).parent().parent().parent().find('.original').css({
+				//此处需结合实际情况计算 上偏移：.original实际高度的二分之一
+				marginTop: function(){
+					return -(130*realHeight/realWidth)-36;
+				},
+				top:'50%'
+			});
+			$(img).parent().parent().parent().find('.original b').css('display','block')
+		}		
+	});
+
+	
+	$('.piclist li.pic').hover(function(){
+			$(this).addClass('on');
+		},function(){
+			$(this).removeClass('on');	
+	})
+	
+	$(".piclist ul li:nth-child(4n)").addClass('r');
+}
+
+
+</script>
+<!--地图-->
+<script type="text/javascript">
+$(function(){ 
+	$('.box01 li').hover(function() {
+	    $(this).addClass('onn');
+	    var wl = $(this).find('img').attr('width');
+	    if (wl < 190) {
+	        $(this).find('.box01 .inn').css('left', '0')
+	    } else {
+	        $(this).find('.box01 .inn').css('left', -wl / 4)
+	    }
+	},
+	function() {
+	    $(this).animate({
+	        height: "120px"
+	    },
+	    100).removeClass('onn');
+	    $(this).find('.box01 inn').css('left', '0')
+	});
+})
+</script>
+<style type="text/css">
+    html,body{margin:0;padding:0;}
+    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+
+<body>
+<div class="yy_1">
+ <div class="wrap">
+  <img class="gxl" src="images/gxl.jpg" width="903" height="115" />
+  <ul>
+   <li>每篇雅思作文修改<span>3~4次</span></li>
+  
+   <li>阅读中每个句子都进行精细分析</li>
+    <li>每小时都会对学员进行作业检查与督促</li>
+  </ul>
+ </div>
+</div>
+<div class="yy_2">
+ <div class="wrap">
+ <img src="images/tx_img.jpg" />
+ </div>
+</div>
+<div class="yy_3 wrap">
+<img src="images/vs.png" />
+<ul class="ul1 left">
+<li class="li1"><p class="p1">数字化教学</p><p class="p2">线下课程全程录像，随时回看。线上课程全程互动，教学无限制。</p></li>
+<li class="li2"><p class="p1">系统一对一</p><p class="p2">完善的学习系统，从课上到课后，<br />每一个环节都有教师监督并反馈信息，教师们能及时了解学员的每时每刻。</p></li>
+<li class="li1"><p class="p1">定制化教学</p><p class="p2">为每个学员量身定制教学计划，以小时为单位践行，<br />
+随时根据学员实际情况进行调整。</p></li>
+<li class="li2"><p class="p1" style=" margin-top:7px;">全封闭管理</p><p class="p2" style=" line-height:16px;">指纹打卡，出勤记录精确至秒。<br />
+全程有教师陪同并督促，及时解决各种问题。<br />
+杜绝一切干扰因素，全程无手机、wifi、电视等，保持最高学习效率。</p></li>
+<li class="li1"><p class="p1">保分承诺</p><p class="p2">一切为结果负责，未达保分目标您可以要求<br />
+1.直接退款   2.重新制定针对性教学计划，继续学习直到分数达标</p></li>
+</ul>
+<ul class="ul2 left">
+<li class="li1"><b>教学硬件</b><p>Teaching hardware</p></li>
+<li class="li2"><b>教学模式</b><p>Teaching mode</p></li>
+<li class="li1"><b>教学重点</b><p>important points</p></li>
+<li class="li2"><b>管理方式</b><p>Management style</p></li>
+<li class="li1"><b>教学成果</b><p>achievements</p></li>
+</ul>
+<ul class="ul3 left">
+<li class="li1"><p class="p1">传统教学</p><p class="p2">上课只靠纸、笔、PPT 网络课堂与面授内容不衔接。</p></li>
+<li class="li2"><p class="p1">名师一对一</p><p class="p2">价格高昂，名师无法在短时间内完全了解学员，不能真正地因材施教。</p></li>
+<li class="li1"><p class="p1">工业化教学</p><p class="p2">模式化严重，要求学员配合教学计划，<br />以推进教学进度为先，不以学员接受程度为基准。</p></li>
+<li class="li2"><p class="p1" style=" margin-top:7px;">放羊式管理</p><p class="p2">只负责学员出勤听课质量、课后练习完成等靠学员自律<br />杜绝一切干扰因素，全程无手机、wifi、电视等，保持最高学习效率。</p></li>
+<li class="li1"><p class="p1">无保分承诺</p><p class="p2">未过无保障，一般做法是进数十人的大班重读</p></li>
+</ul>
+</div>
+<div class="yy_4 wrap">
+<ul class="box01">
+	<li class="li1">
+		<div class="inn">
+			<a href="#" target="_blank"><img src="images/xy_1.png"/></a>
+			<p>余梦琪，授课时间140小时，雅思成绩从4.5分提升到6.5分</p>
+		</div>
+	</li>
+	<li class="li2">
+		<div class="inn">
+			<a href="#" target="_blank"><img src="images/xy_2.png" /></a>
+			<p>邓欣彦，授课时间40小时，雅思成绩从6分提升到7分</p>
+		</div>
+	</li>
+	<li class="li3">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_3.png" /></a>
+			<p>盛小曦，授课时间40小时，雅思成绩从6分提升到7分</p>
+	    </div>
+	</li>
+	<li class="li4">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_4.png" /></a>
+			<p>李俊，授课时间60小时，雅思成绩从6分提升到6.5分</p>
+	    </div>
+	</li>
+	<li class="li5">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_5.png" /></a>
+	        <p>方海萌，授课时间40小时，雅思成绩从6分提升到7分</p>
+	    </div>
+	</li>
+	<li class="li6">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_6.png"/></a>
+	        <p>熊天怡，授课时间120小时，雅思成绩从5分提升到6.5分</p>
+	    </div>
+	</li>
+	<li class="li7">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_7.png" /></a>
+	        <p>杨斯岸，授课时间80小时，雅思成绩从5.5分提升到6.5分</p>
+	    </div>
+	</li>
+	<li class="li8">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_8.png" /></a>
+	        <p>李龙浩，授课时间150小时，雅思成绩从2分提升到5分</p>
+	    </div>
+	</li>
+	<li class="li9">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img  src="images/xy_9.png" /></a>
+	        <p>曾艺琳，授课时间80小时，雅思成绩从4分提升到5.5分</p>
+	    </div>
+	</li>
+	<li class="li10">
+	    <div class="inn">
+	        <a href="#" target="_blank"><img src="images/xy_10.png" /></a>
+	        <p>曾美玲，授课时间40小时，雅思成绩从5分提升到6.5分</p>
+	    </div>
+	</li>
+	
+</ul>
+
+</div>
+<div class="yy_5 ">
+<div class="wrap">
+ <div class="p_z">在这里，<br />有最完备的设施满足学员的学习<br />和生活休闲需要</div>
+ <div class="p1">iPad平板学习配备<br />75寸交互智能授课平台<br />课程摄像机</div>
+ <div class="p2">依山傍水园林社区<br />精品别墅公寓<br />家庭式餐厅<br />自助厨房</div>
+ <div class="p3">健身中心<br />篮球场<br />游泳池<br />沿江健身观景步道</div>
+ <div class="picshow picshow01">
+        <div class="piclist">
+    
+            <ul class="ul1">
+                <li class="pic" id="tes"><div class="in"><div class="imgdiv"><img src="images/xx_1.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/xx_2.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/xx_3.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/xx_4.jpg" alt="" width="260" height="220"/></div></div></li>
+        </ul>
+        <div class="clean"></div>
+        <ul class="ul2 left">
+            <li class="pic" id="tes"><div class="in"><div class="imgdiv"><img src="images/hj_1.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/hj_2.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/hj_3.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/hj_4.jpg" alt="" width="260" height="220"/></div></div></li>
+            
+        </ul>
+        <ul class="ul3 right">
+             <li class="pic" id="tes"><div class="in"><div class="imgdiv"><img src="images/js_1.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/js_2.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/js_3.jpg" alt="" width="260" height="220"/></div></div></li>
+            <li class="pic"><div class="in"><div class="imgdiv"><img src="images/js_4.jpg" alt="" width="260" height="220"/></div></div></li>
+        </ul>
+        </div>
+    
+    </div>
+ 
+</div>
+</div>
+<div class="yy_6 wrap">
+<div class="yy_6_p">
+<p class="p1">全封闭教育的作息安排是怎么样？</p>
+<p class="p2">上多久的课才能见效？</p>
+<p class="p3">全封闭教育的作息安排是怎么样？</p>
+<p class="p4">想做全真雅思考试吗？</p>
+<p class="p5">全封闭教育的作息安排是怎么样？</p>
+<p class="p6">上多久的课才能见效？</p>
+<p class="p7">这个机构靠谱吗？</p>
+</div>
+</div>
+<div class="yy_7">
+<!--<div style="width:100%;height:550px;" id="dituContent"></div>-->
+ <div style="width:1862px;height:550px;" id="dituContent"></div>
+</div>
+<!--<div class="kf">
+ <img src="images/kf.jpg" border="0" usemap="#Map" />
+ <map name="Map" id="Map">
+   <area shape="rect" coords="4,56,127,118" href="#" />
+   <area shape="rect" coords="5,121,126,183" href="#" />
+   <area shape="rect" coords="3,187,127,248" href="#" />
+   <area shape="rect" coords="4,249,127,315" href="#" />
+   <area shape="rect" coords="5,319,126,380" href="#" />
+   <area shape="rect" coords="4,383,127,445" href="#" />
+ </map>
+</div>-->
+<div id="top"></div>
+<script type="text/javascript" src="js/lrtk.js"></script>
+</body>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(113.281167,22.954443);//定义一个中心点坐标
+        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type:BMAP_NAVIGATION_CONTROL_SMALL});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_TOP_RIGHT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"英乐腾教育",content:"广州英乐腾教育咨询有限公司<br/>联系电话：400-0134-557",point:"113.281004|22.954584",isOpen:1,icon:{w:23,h:25,l:46,t:21,x:9,lb:12}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</html>

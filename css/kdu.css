@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+.izl-rmenu{position:fixed; right:0; margin-right:20px; bottom:20px; background: url(../images/kf.png); padding:55px 0 0px 0px; z-index:999; width:130px; height:400px; }
+.izl-rmenu .btn{width:123px; height:62px; margin:0 auto 4px; cursor:pointer; position:relative;}
+.izl-rmenu .btn-qq{background: url(../images/kf_1.jpg) 0px 0px no-repeat;}
+.izl-rmenu .btn-qq:hover{background-color:#488bc7;}
+.izl-rmenu a.btn-qq,.izl-rmenu a.btn-qq:visited{background:url(../images/kf_1.jpg) 0px 0px no-repeat;text-decoration:none; display:block;}
+.izl-rmenu .btn-wx{background:url(../images/kf_6.jpg) 0px 0px no-repeat;}
+.izl-rmenu .btn-wx:hover{background-color:#58a81c;}
+.izl-rmenu .btn-wx .pic{position:absolute; left:-160px; top:0px; display:none;width:160px;height:160px;}
+.izl-rmenu .btn-phone{background:url(../images/kf_5.jpg) 0px 0px no-repeat;}
+.izl-rmenu .btn-phone:hover{background-color:#59a81b;}
+.izl-rmenu .btn-phone .phone{background-color:#59a81b; position:absolute; width:170px; left:-160px; top:0px; line-height:62px; color:#FFF; font-size:18px; text-align:center; display:none;}
+.izl-rmenu .btn-top{background:url(../images/r_top.png) 0px 0px no-repeat; background-color:#666666; display:none;}
+.izl-rmenu .btn-top:hover{background-color:#444;}
